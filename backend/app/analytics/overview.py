@@ -2,6 +2,7 @@ from app.analytics.activation import signup_summary
 from app.analytics.activity import snapshot
 from app.analytics.comparisons import comparisons
 from app.analytics.contracts import OverviewResponse, Period
+from app.analytics.insights import changes
 from app.analytics.monetization import monetization_summary
 
 
@@ -13,10 +14,12 @@ def overview(session, query):
             **monetization_summary(session, period).model_dump(),
         }
 
+    metrics = comparisons(summary(query), summary(query.previous()))
     return OverviewResponse(
         period=Period.from_query(query),
         previous_period=Period.from_query(query.previous()),
         dimension=query.dimension,
         segment_value=query.segment_value,
-        metrics=comparisons(summary(query), summary(query.previous())),
+        metrics=metrics,
+        insights=changes(metrics),
     )

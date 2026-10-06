@@ -9,6 +9,7 @@ from app.experiments.contracts import (
     ExperimentList,
     ExperimentListItem,
     ExperimentMetadata,
+    ExperimentWorkspace,
     Health,
     Population,
     Sensitivity,
@@ -24,6 +25,24 @@ def experiment_list(session, query):
                 **row, assignment_counts={"control": row["control"], "treatment": row["treatment"]}
             )
             for row in queries.list_rows(session, query)
+        ],
+    )
+
+
+def workspace(session, query):
+    """Two aggregate queries for the register and all evidence, not one request per row."""
+    register = experiment_list(session, query)
+    grouped = {}
+    for row in queries.population(session, query, None):
+        grouped.setdefault(row["experiment_id"], []).append(row)
+    return ExperimentWorkspace(
+        listing=register,
+        analyses=[
+            analyse_aggregates(
+                ExperimentMetadata(**item.model_dump()), grouped.get(item.id, []), query
+            )
+            for item in register.experiments
+            if item.primary_metric == "activation_within_7_days"
         ],
     )
 

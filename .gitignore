@@ -21,3 +21,9 @@ pgdata/
 *.sqlite*
 .DS_Store
 Thumbs.db
+node_modules/
+.pnpm-store/
+.next/
+*.tsbuildinfo
+playwright-report/
+test-results/

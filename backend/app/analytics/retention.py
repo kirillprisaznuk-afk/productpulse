@@ -1,5 +1,6 @@
 from app.analytics.common import USER_FACTS, rows, segment_filter, segment_sql
 from app.analytics.contracts import Period, RetentionCell, RetentionCohort, RetentionResponse
+from app.analytics.insights import retention_findings
 
 
 def retention_sql(query):
@@ -56,6 +57,10 @@ def retention(session, query):
                 **{k: row[k] for k in ("week", "observable", "active_users", "retention_rate")}
             )
         )
+    cohorts = list(groups.values())
     return RetentionResponse(
-        period=Period.from_query(query), dimension=query.dimension, cohorts=list(groups.values())
+        period=Period.from_query(query),
+        dimension=query.dimension,
+        cohorts=cohorts,
+        insights=retention_findings(cohorts),
     )

@@ -7,6 +7,7 @@ from app.analytics.contracts import (
     SegmentRow,
     SegmentsResponse,
 )
+from app.analytics.insights import segment_findings
 from app.analytics.monetization import monetization_groups
 
 
@@ -34,5 +35,8 @@ def segments(session, query):
         )
         groups.append(SegmentRow(segment=segment, activation=activation, monetization=values))
     return SegmentsResponse(
-        period=Period.from_query(query), dimension=query.dimension, groups=groups
+        period=Period.from_query(query),
+        dimension=query.dimension,
+        groups=groups,
+        insights=segment_findings(groups),
     )

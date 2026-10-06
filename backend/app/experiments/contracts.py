@@ -215,3 +215,8 @@ class ExperimentAnalysis(BaseModel):
         "User-level independence is assumed; shared-account dependence is not adjusted.",
         "One primary metric per experiment; no joint correction across experiments.",
     ]
+
+
+class ExperimentWorkspace(BaseModel):
+    listing: ExperimentList
+    analyses: list[ExperimentAnalysis]

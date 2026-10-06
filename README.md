@@ -1,6 +1,6 @@
 # ProductPulse
 
-**Product Analytics & Experimentation Platform — Stage 3 backend.**
+**Product Analytics & Experimentation Platform — Stage 5 analytics interfaces.**
 
 ProductPulse is a locally runnable portfolio project for exploring activation, acquisition
 quality, retention, account revenue, and experiments in a fictional B2B SaaS product.
@@ -10,11 +10,13 @@ records, or external services are used.
 Stage 1 provides a deterministic event generator, PostgreSQL warehouse, migrations and validation.
 Stage 2 adds a SQL-first backend analytics engine: activity, activation, ordered funnels, weekly
 retention, account monetization, segmentation and period comparisons. Stage 3 adds binary experiment
-inference, health diagnostics and sample-size planning. Frontend remains a future milestone.
+inference, health diagnostics and sample-size planning. Stage 4 adds a Next.js application shell,
+Overview, Funnels and Methodology. Stage 5 completes Retention, Segments and Experiments,
+including sample planning. See [frontend setup and validation](frontend/README.md).
 
 ```text
 Synthetic generator -> PostgreSQL -> SQL analytics
-                                     -> statistics -> FastAPI -> Next.js (future)
+                                     -> statistics -> FastAPI -> Next.js
 ```
 
 ## Quick start with Docker Compose
@@ -132,5 +134,6 @@ Run `python scripts/verify_experiments.py --explain` from the root for read-only
 - [Synthetic assumptions](docs/SYNTHETIC_DATA.md)
 - [Stage 1 validation record](docs/VALIDATION.md)
 
-Stage 3 deliberately excludes dashboards, authentication, uploads, AI features,
-cloud infrastructure, and deployment.
+All six analytics routes are functional. Authentication, uploads, AI features, cloud infrastructure,
+deployment and final portfolio packaging remain outside the current scope. Stage 6 is complete;
+Stage 7 has not begun. See [decision rules and Stage 6 validation](docs/DECISION_INSIGHTS.md).

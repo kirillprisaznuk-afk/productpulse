@@ -10,6 +10,7 @@ from app.experiments.contracts import (
     AnalysisQuery,
     ExperimentAnalysis,
     ExperimentList,
+    ExperimentWorkspace,
     MDERequest,
     MDEResult,
     PlanningRequest,
@@ -42,6 +43,11 @@ Database = Annotated[Session, Depends(experiment_session)]
 @router.get("", response_model=ExperimentList)
 def list_experiments(session: Database, query: Parameters):
     return service.experiment_list(session, query)
+
+
+@router.get("/workspace", response_model=ExperimentWorkspace)
+def experiment_workspace(session: Database, query: Parameters):
+    return service.workspace(session, query)
 
 
 @router.get("/{experiment_id}/analysis", response_model=ExperimentAnalysis)

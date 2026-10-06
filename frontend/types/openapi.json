@@ -1,0 +1,3416 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ProductPulse",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app__schemas__demo__Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/demo/summary": {
+      "get": {
+        "summary": "Demo Summary",
+        "operationId": "demo_summary_api_demo_summary_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analytics/overview": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Overview",
+        "operationId": "get_overview_api_analytics_overview_get",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-06-01",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Dimension"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "segment_value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Value"
+            }
+          },
+          {
+            "name": "max_weeks",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 26,
+              "minimum": 0,
+              "default": 12,
+              "title": "Max Weeks"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OverviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analytics/activity": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Activity",
+        "operationId": "get_activity_api_analytics_activity_get",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-06-01",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Dimension"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "segment_value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Value"
+            }
+          },
+          {
+            "name": "max_weeks",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 26,
+              "minimum": 0,
+              "default": 12,
+              "title": "Max Weeks"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analytics/activation": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Activation",
+        "operationId": "get_activation_api_analytics_activation_get",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-06-01",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Dimension"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "segment_value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Value"
+            }
+          },
+          {
+            "name": "max_weeks",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 26,
+              "minimum": 0,
+              "default": 12,
+              "title": "Max Weeks"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analytics/funnel": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Funnel",
+        "operationId": "get_funnel_api_analytics_funnel_get",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-06-01",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Dimension"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "segment_value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Value"
+            }
+          },
+          {
+            "name": "max_weeks",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 26,
+              "minimum": 0,
+              "default": 12,
+              "title": "Max Weeks"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analytics/retention": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Retention",
+        "operationId": "get_retention_api_analytics_retention_get",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-06-01",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Dimension"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "segment_value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Value"
+            }
+          },
+          {
+            "name": "max_weeks",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 26,
+              "minimum": 0,
+              "default": 12,
+              "title": "Max Weeks"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetentionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analytics/segments": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Segments",
+        "operationId": "get_segments_api_analytics_segments_get",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-06-01",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Dimension"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "segment_value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Value"
+            }
+          },
+          {
+            "name": "max_weeks",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 26,
+              "minimum": 0,
+              "default": 12,
+              "title": "Max Weeks"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SegmentsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analytics/monetization": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Monetization",
+        "operationId": "get_monetization_api_analytics_monetization_get",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-06-01",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Dimension"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "segment_value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Value"
+            }
+          },
+          {
+            "name": "max_weeks",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 26,
+              "minimum": 0,
+              "default": 12,
+              "title": "Max Weeks"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonetizationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experiments": {
+      "get": {
+        "tags": [
+          "experiments"
+        ],
+        "summary": "List Experiments",
+        "operationId": "list_experiments_api_experiments_get",
+        "parameters": [
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "alpha",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                0.01,
+                0.05,
+                0.1
+              ],
+              "type": "number",
+              "default": 0.05,
+              "title": "Alpha"
+            }
+          },
+          {
+            "name": "target_power",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 0.99,
+              "exclusiveMinimum": 0.5,
+              "default": 0.8,
+              "title": "Target Power"
+            }
+          },
+          {
+            "name": "practical_threshold",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0.000001,
+                  "exclusiveMaximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Practical Threshold"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentList"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experiments/workspace": {
+      "get": {
+        "tags": [
+          "experiments"
+        ],
+        "summary": "Experiment Workspace",
+        "operationId": "experiment_workspace_api_experiments_workspace_get",
+        "parameters": [
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "alpha",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                0.01,
+                0.05,
+                0.1
+              ],
+              "type": "number",
+              "default": 0.05,
+              "title": "Alpha"
+            }
+          },
+          {
+            "name": "target_power",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 0.99,
+              "exclusiveMinimum": 0.5,
+              "default": 0.8,
+              "title": "Target Power"
+            }
+          },
+          {
+            "name": "practical_threshold",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0.000001,
+                  "exclusiveMaximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Practical Threshold"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentWorkspace"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experiments/{experiment_id}/analysis": {
+      "get": {
+        "tags": [
+          "experiments"
+        ],
+        "summary": "Experiment Analysis",
+        "operationId": "experiment_analysis_api_experiments__experiment_id__analysis_get",
+        "parameters": [
+          {
+            "name": "experiment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "title": "Experiment Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2025-07-01",
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "alpha",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                0.01,
+                0.05,
+                0.1
+              ],
+              "type": "number",
+              "default": 0.05,
+              "title": "Alpha"
+            }
+          },
+          {
+            "name": "target_power",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 0.99,
+              "exclusiveMinimum": 0.5,
+              "default": 0.8,
+              "title": "Target Power"
+            }
+          },
+          {
+            "name": "practical_threshold",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0.000001,
+                  "exclusiveMaximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Practical Threshold"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentAnalysis"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experiments/power": {
+      "post": {
+        "tags": [
+          "experiments"
+        ],
+        "summary": "Sample Size",
+        "operationId": "sample_size_api_experiments_power_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanningRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experiments/mde": {
+      "post": {
+        "tags": [
+          "experiments"
+        ],
+        "summary": "Mde",
+        "operationId": "mde_api_experiments_mde_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MDERequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MDEResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActivationResponse": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Dimension"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/ActivationRow"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "cohorts": {
+            "items": {
+              "$ref": "#/components/schemas/ActivationRow"
+            },
+            "type": "array",
+            "title": "Cohorts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "dimension",
+          "groups",
+          "cohorts"
+        ],
+        "title": "ActivationResponse"
+      },
+      "ActivationRow": {
+        "properties": {
+          "segment": {
+            "type": "string",
+            "title": "Segment"
+          },
+          "cohort_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cohort Start"
+          },
+          "completed_signups": {
+            "type": "integer",
+            "title": "Completed Signups"
+          },
+          "eligible_users": {
+            "type": "integer",
+            "title": "Eligible Users"
+          },
+          "censored_users": {
+            "type": "integer",
+            "title": "Censored Users"
+          },
+          "activated_users": {
+            "type": "integer",
+            "title": "Activated Users"
+          },
+          "activation_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Activation Rate"
+          },
+          "median_activation_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Activation Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "segment",
+          "completed_signups",
+          "eligible_users",
+          "censored_users",
+          "activated_users",
+          "activation_rate",
+          "median_activation_seconds"
+        ],
+        "title": "ActivationRow"
+      },
+      "ActivityPoint": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "dau": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dau"
+          },
+          "wau": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Wau"
+          },
+          "mau": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mau"
+          },
+          "dau_mau": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dau Mau"
+          },
+          "wau_mau": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Wau Mau"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "dau",
+          "wau",
+          "mau",
+          "dau_mau",
+          "wau_mau"
+        ],
+        "title": "ActivityPoint"
+      },
+      "ActivityResponse": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "previous_period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Dimension"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "segment_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Segment Value"
+          },
+          "series": {
+            "items": {
+              "$ref": "#/components/schemas/ActivityPoint"
+            },
+            "type": "array",
+            "title": "Series"
+          },
+          "comparisons": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Comparison"
+            },
+            "type": "object",
+            "title": "Comparisons"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "previous_period",
+          "dimension",
+          "segment_value",
+          "series",
+          "comparisons"
+        ],
+        "title": "ActivityResponse"
+      },
+      "Comparison": {
+        "properties": {
+          "current": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current"
+          },
+          "previous": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous"
+          },
+          "absolute_change": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Absolute Change"
+          },
+          "relative_change": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relative Change"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "up",
+              "down",
+              "flat",
+              "unavailable"
+            ],
+            "title": "Direction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "current",
+          "previous",
+          "absolute_change",
+          "relative_change",
+          "direction"
+        ],
+        "title": "Comparison"
+      },
+      "ConfidenceInterval": {
+        "properties": {
+          "confidence_level": {
+            "type": "number",
+            "title": "Confidence Level"
+          },
+          "lower": {
+            "type": "number",
+            "title": "Lower"
+          },
+          "point_estimate": {
+            "type": "number",
+            "title": "Point Estimate"
+          },
+          "upper": {
+            "type": "number",
+            "title": "Upper"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method",
+            "default": "newcombe_wilson_no_continuity_correction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "confidence_level",
+          "lower",
+          "point_estimate",
+          "upper"
+        ],
+        "title": "ConfidenceInterval"
+      },
+      "Decision": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "INSUFFICIENT_DATA",
+              "POSITIVE_SIGNIFICANT",
+              "NEGATIVE_SIGNIFICANT",
+              "NO_SIGNIFICANT_DIFFERENCE",
+              "DATA_QUALITY_WARNING"
+            ],
+            "title": "State"
+          },
+          "interpretation": {
+            "type": "string",
+            "title": "Interpretation"
+          },
+          "next_action": {
+            "type": "string",
+            "enum": [
+              "review_data_quality",
+              "collect_mature_data",
+              "review_product_relevance",
+              "review_potential_harm",
+              "no_rollout_evidence"
+            ],
+            "title": "Next Action"
+          },
+          "rollout_recommended": {
+            "type": "boolean",
+            "title": "Rollout Recommended",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "interpretation",
+          "next_action"
+        ],
+        "title": "Decision"
+      },
+      "DemoSummary": {
+        "properties": {
+          "dataset_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Start"
+          },
+          "dataset_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset End"
+          },
+          "accounts": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Accounts"
+          },
+          "users": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Users"
+          },
+          "events": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Events"
+          },
+          "subscriptions": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Subscriptions"
+          },
+          "experiments": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Experiments"
+          },
+          "experiment_assignments": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Experiment Assignments"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_start",
+          "dataset_end",
+          "accounts",
+          "users",
+          "events",
+          "subscriptions",
+          "experiments",
+          "experiment_assignments"
+        ],
+        "title": "DemoSummary"
+      },
+      "Dimension": {
+        "type": "string",
+        "enum": [
+          "acquisition_channel",
+          "company_size",
+          "country",
+          "device_type"
+        ],
+        "title": "Dimension"
+      },
+      "Effect": {
+        "properties": {
+          "absolute_uplift": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Absolute Uplift"
+          },
+          "relative_uplift": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relative Uplift"
+          },
+          "practical_threshold": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Practical Threshold"
+          },
+          "exceeds_practical_threshold": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exceeds Practical Threshold"
+          }
+        },
+        "type": "object",
+        "required": [
+          "absolute_uplift",
+          "relative_uplift",
+          "practical_threshold",
+          "exceeds_practical_threshold"
+        ],
+        "title": "Effect"
+      },
+      "ExperimentAnalysis": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ExperimentMetadata"
+          },
+          "population": {
+            "$ref": "#/components/schemas/Population"
+          },
+          "variant_results": {
+            "items": {
+              "$ref": "#/components/schemas/VariantResult"
+            },
+            "type": "array",
+            "title": "Variant Results"
+          },
+          "effect": {
+            "$ref": "#/components/schemas/Effect"
+          },
+          "inference": {
+            "$ref": "#/components/schemas/Inference"
+          },
+          "health": {
+            "$ref": "#/components/schemas/app__experiments__contracts__Health"
+          },
+          "power": {
+            "$ref": "#/components/schemas/Sensitivity"
+          },
+          "decision": {
+            "$ref": "#/components/schemas/Decision"
+          },
+          "methodological_limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Methodological Limitations",
+            "default": [
+              "Fixed-horizon snapshot inference; repeated peeking does not preserve nominal error rates.",
+              "User-level independence is assumed; shared-account dependence is not adjusted.",
+              "One primary metric per experiment; no joint correction across experiments."
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "metadata",
+          "population",
+          "variant_results",
+          "effect",
+          "inference",
+          "health",
+          "power",
+          "decision"
+        ],
+        "title": "ExperimentAnalysis"
+      },
+      "ExperimentList": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "experiments": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentListItem"
+            },
+            "type": "array",
+            "title": "Experiments"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "experiments"
+        ],
+        "title": "ExperimentList"
+      },
+      "ExperimentListItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "primary_metric": {
+            "type": "string",
+            "title": "Primary Metric"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Started At"
+          },
+          "ended_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ended At"
+          },
+          "variants": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "control",
+                "treatment"
+              ]
+            },
+            "type": "array",
+            "title": "Variants",
+            "default": [
+              "control",
+              "treatment"
+            ]
+          },
+          "expected_allocation": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "propertyNames": {
+              "enum": [
+                "control",
+                "treatment"
+              ]
+            },
+            "type": "object",
+            "title": "Expected Allocation",
+            "default": {
+              "control": 0.5,
+              "treatment": 0.5
+            }
+          },
+          "assignment_counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "propertyNames": {
+              "enum": [
+                "control",
+                "treatment"
+              ]
+            },
+            "type": "object",
+            "title": "Assignment Counts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "status",
+          "primary_metric",
+          "started_at",
+          "ended_at",
+          "assignment_counts"
+        ],
+        "title": "ExperimentListItem"
+      },
+      "ExperimentMetadata": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "primary_metric": {
+            "type": "string",
+            "title": "Primary Metric"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Started At"
+          },
+          "ended_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ended At"
+          },
+          "variants": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "control",
+                "treatment"
+              ]
+            },
+            "type": "array",
+            "title": "Variants",
+            "default": [
+              "control",
+              "treatment"
+            ]
+          },
+          "expected_allocation": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "propertyNames": {
+              "enum": [
+                "control",
+                "treatment"
+              ]
+            },
+            "type": "object",
+            "title": "Expected Allocation",
+            "default": {
+              "control": 0.5,
+              "treatment": 0.5
+            }
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "status",
+          "primary_metric",
+          "started_at",
+          "ended_at"
+        ],
+        "title": "ExperimentMetadata"
+      },
+      "ExperimentWorkspace": {
+        "properties": {
+          "listing": {
+            "$ref": "#/components/schemas/ExperimentList"
+          },
+          "analyses": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentAnalysis"
+            },
+            "type": "array",
+            "title": "Analyses"
+          }
+        },
+        "type": "object",
+        "required": [
+          "listing",
+          "analyses"
+        ],
+        "title": "ExperimentWorkspace"
+      },
+      "FunnelGroup": {
+        "properties": {
+          "segment": {
+            "type": "string",
+            "title": "Segment"
+          },
+          "stages": {
+            "items": {
+              "$ref": "#/components/schemas/FunnelStage"
+            },
+            "type": "array",
+            "title": "Stages"
+          },
+          "median_signup_to_onboarding_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Signup To Onboarding Seconds"
+          },
+          "median_signup_to_core_action_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Signup To Core Action Seconds"
+          },
+          "median_core_action_to_paid_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Core Action To Paid Seconds"
+          },
+          "insights": {
+            "items": {
+              "$ref": "#/components/schemas/Insight"
+            },
+            "type": "array",
+            "title": "Insights"
+          }
+        },
+        "type": "object",
+        "required": [
+          "segment",
+          "stages",
+          "median_signup_to_onboarding_seconds",
+          "median_signup_to_core_action_seconds",
+          "median_core_action_to_paid_seconds"
+        ],
+        "title": "FunnelGroup"
+      },
+      "FunnelResponse": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Dimension"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/FunnelGroup"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "insights": {
+            "items": {
+              "$ref": "#/components/schemas/Insight"
+            },
+            "type": "array",
+            "title": "Insights"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "dimension",
+          "groups"
+        ],
+        "title": "FunnelResponse"
+      },
+      "FunnelStage": {
+        "properties": {
+          "event_name": {
+            "type": "string",
+            "title": "Event Name"
+          },
+          "users": {
+            "type": "integer",
+            "title": "Users"
+          },
+          "conversion_from_previous": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversion From Previous"
+          },
+          "cumulative_conversion": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cumulative Conversion"
+          },
+          "drop_off_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Drop Off Count"
+          },
+          "drop_off_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Drop Off Rate"
+          },
+          "median_seconds_from_previous": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Seconds From Previous"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_name",
+          "users",
+          "conversion_from_previous",
+          "cumulative_conversion",
+          "drop_off_count",
+          "drop_off_rate",
+          "median_seconds_from_previous"
+        ],
+        "title": "FunnelStage"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Inference": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "title": "Method",
+            "default": "two_sided_pooled_two_proportion_z_test"
+          },
+          "null_hypothesis": {
+            "type": "string",
+            "title": "Null Hypothesis",
+            "default": "treatment_rate = control_rate"
+          },
+          "alternative_hypothesis": {
+            "type": "string",
+            "title": "Alternative Hypothesis",
+            "default": "treatment_rate != control_rate"
+          },
+          "alpha": {
+            "type": "number",
+            "title": "Alpha"
+          },
+          "test_statistic": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Test Statistic"
+          },
+          "p_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P Value"
+          },
+          "significant": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Significant"
+          },
+          "confidence_interval": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConfidenceInterval"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "approximation_valid": {
+            "type": "boolean",
+            "title": "Approximation Valid"
+          },
+          "valid_for_decision": {
+            "type": "boolean",
+            "title": "Valid For Decision"
+          },
+          "unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "alpha",
+          "test_statistic",
+          "p_value",
+          "significant",
+          "confidence_interval",
+          "approximation_valid",
+          "valid_for_decision",
+          "unavailable_reason"
+        ],
+        "title": "Inference"
+      },
+      "Insight": {
+        "properties": {
+          "rule": {
+            "type": "string",
+            "title": "Rule"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "warning",
+              "opportunity",
+              "information"
+            ],
+            "title": "Severity"
+          },
+          "priority": {
+            "type": "integer",
+            "title": "Priority"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "change",
+              "funnel",
+              "retention",
+              "segment"
+            ],
+            "title": "Category"
+          },
+          "metric": {
+            "type": "string",
+            "title": "Metric"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "evidence": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Evidence"
+          },
+          "destination": {
+            "type": "string",
+            "enum": [
+              "/",
+              "/funnels",
+              "/retention",
+              "/segments"
+            ],
+            "title": "Destination"
+          },
+          "segment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Segment"
+          },
+          "cohort_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cohort Start"
+          },
+          "caveat": {
+            "type": "string",
+            "title": "Caveat",
+            "default": "Descriptive comparison; not a significance test or causal conclusion."
+          }
+        },
+        "type": "object",
+        "required": [
+          "rule",
+          "severity",
+          "priority",
+          "category",
+          "metric",
+          "message",
+          "evidence",
+          "destination"
+        ],
+        "title": "Insight"
+      },
+      "MDERequest": {
+        "properties": {
+          "baseline_rate": {
+            "type": "number",
+            "exclusiveMaximum": 1,
+            "exclusiveMinimum": 0,
+            "title": "Baseline Rate"
+          },
+          "sample_size_per_variant": {
+            "type": "integer",
+            "maximum": 1000000000,
+            "minimum": 1,
+            "title": "Sample Size Per Variant"
+          },
+          "alpha": {
+            "type": "number",
+            "enum": [
+              0.01,
+              0.05,
+              0.1
+            ],
+            "title": "Alpha",
+            "default": 0.05
+          },
+          "target_power": {
+            "type": "number",
+            "maximum": 0.99,
+            "exclusiveMinimum": 0.5,
+            "title": "Target Power",
+            "default": 0.8
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "baseline_rate",
+          "sample_size_per_variant"
+        ],
+        "title": "MDERequest"
+      },
+      "MDEResult": {
+        "properties": {
+          "baseline_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Baseline Rate"
+          },
+          "sample_size_per_variant": {
+            "type": "integer",
+            "title": "Sample Size Per Variant"
+          },
+          "alpha": {
+            "type": "number",
+            "title": "Alpha"
+          },
+          "target_power": {
+            "type": "number",
+            "title": "Target Power"
+          },
+          "absolute_mde": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Absolute Mde"
+          },
+          "relative_mde": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relative Mde"
+          },
+          "unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable Reason"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method",
+            "default": "inverse_equal_allocation_normal_approximation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "baseline_rate",
+          "sample_size_per_variant",
+          "alpha",
+          "target_power",
+          "absolute_mde",
+          "relative_mde"
+        ],
+        "title": "MDEResult"
+      },
+      "MonetizationResponse": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "previous_period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Dimension"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "segment_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Segment Value"
+          },
+          "current": {
+            "$ref": "#/components/schemas/MonetizationValues"
+          },
+          "comparisons": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Comparison"
+            },
+            "type": "object",
+            "title": "Comparisons"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "previous_period",
+          "dimension",
+          "segment_value",
+          "current",
+          "comparisons"
+        ],
+        "title": "MonetizationResponse"
+      },
+      "MonetizationValues": {
+        "properties": {
+          "eligible_accounts": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eligible Accounts"
+          },
+          "converted_accounts": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Converted Accounts"
+          },
+          "censored_accounts": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Censored Accounts"
+          },
+          "paid_conversion_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Paid Conversion Rate"
+          },
+          "paid_users": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Paid Users"
+          },
+          "active_subscriptions": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active Subscriptions"
+          },
+          "mrr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mrr"
+          },
+          "arpu": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arpu"
+          },
+          "new_mrr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "New Mrr"
+          },
+          "churned_mrr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Churned Mrr"
+          },
+          "opening_subscriptions": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opening Subscriptions"
+          },
+          "churned_subscriptions": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Churned Subscriptions"
+          },
+          "churned_opening_subscriptions": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Churned Opening Subscriptions"
+          },
+          "churn_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Churn Rate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "eligible_accounts",
+          "converted_accounts",
+          "censored_accounts",
+          "paid_conversion_rate",
+          "paid_users",
+          "active_subscriptions",
+          "mrr",
+          "arpu",
+          "new_mrr",
+          "churned_mrr",
+          "opening_subscriptions",
+          "churned_subscriptions",
+          "churned_opening_subscriptions",
+          "churn_rate"
+        ],
+        "title": "MonetizationValues"
+      },
+      "OverviewResponse": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "previous_period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Dimension"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "segment_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Segment Value"
+          },
+          "metrics": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Comparison"
+            },
+            "type": "object",
+            "title": "Metrics"
+          },
+          "insights": {
+            "items": {
+              "$ref": "#/components/schemas/Insight"
+            },
+            "type": "array",
+            "title": "Insights"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "previous_period",
+          "dimension",
+          "segment_value",
+          "metrics"
+        ],
+        "title": "OverviewResponse"
+      },
+      "Period": {
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Start Date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "title": "End Date"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "fully_observed": {
+            "type": "boolean",
+            "title": "Fully Observed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "start_date",
+          "end_date",
+          "as_of",
+          "fully_observed"
+        ],
+        "title": "Period"
+      },
+      "PlanningRequest": {
+        "properties": {
+          "baseline_rate": {
+            "type": "number",
+            "exclusiveMaximum": 1,
+            "exclusiveMinimum": 0,
+            "title": "Baseline Rate"
+          },
+          "minimum_detectable_effect": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0.000001,
+            "title": "Minimum Detectable Effect"
+          },
+          "effect_mode": {
+            "type": "string",
+            "enum": [
+              "absolute",
+              "relative"
+            ],
+            "title": "Effect Mode",
+            "default": "absolute"
+          },
+          "alpha": {
+            "type": "number",
+            "enum": [
+              0.01,
+              0.05,
+              0.1
+            ],
+            "title": "Alpha",
+            "default": 0.05
+          },
+          "target_power": {
+            "type": "number",
+            "maximum": 0.99,
+            "exclusiveMinimum": 0.5,
+            "title": "Target Power",
+            "default": 0.8
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "baseline_rate",
+          "minimum_detectable_effect"
+        ],
+        "title": "PlanningRequest"
+      },
+      "PlanningResponse": {
+        "properties": {
+          "baseline_rate": {
+            "type": "number",
+            "title": "Baseline Rate"
+          },
+          "treatment_rate": {
+            "type": "number",
+            "title": "Treatment Rate"
+          },
+          "absolute_mde": {
+            "type": "number",
+            "title": "Absolute Mde"
+          },
+          "relative_mde": {
+            "type": "number",
+            "title": "Relative Mde"
+          },
+          "alpha": {
+            "type": "number",
+            "title": "Alpha"
+          },
+          "target_power": {
+            "type": "number",
+            "title": "Target Power"
+          },
+          "required_sample_per_variant": {
+            "type": "integer",
+            "title": "Required Sample Per Variant"
+          },
+          "required_total_sample": {
+            "type": "integer",
+            "title": "Required Total Sample"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method",
+            "default": "equal_allocation_normal_approximation"
+          },
+          "assumptions": {
+            "type": "string",
+            "title": "Assumptions",
+            "default": "Independent users, fixed horizon, positive effect, equal allocation."
+          }
+        },
+        "type": "object",
+        "required": [
+          "baseline_rate",
+          "treatment_rate",
+          "absolute_mde",
+          "relative_mde",
+          "alpha",
+          "target_power",
+          "required_sample_per_variant",
+          "required_total_sample"
+        ],
+        "title": "PlanningResponse"
+      },
+      "Population": {
+        "properties": {
+          "assigned": {
+            "type": "integer",
+            "title": "Assigned"
+          },
+          "mature": {
+            "type": "integer",
+            "title": "Mature"
+          },
+          "censored": {
+            "type": "integer",
+            "title": "Censored"
+          },
+          "invalid": {
+            "type": "integer",
+            "title": "Invalid"
+          },
+          "valid": {
+            "type": "integer",
+            "title": "Valid"
+          },
+          "maturity_fraction": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maturity Fraction"
+          },
+          "outcome_window_days": {
+            "type": "integer",
+            "title": "Outcome Window Days",
+            "default": 7
+          },
+          "horizon_fully_observed": {
+            "type": "boolean",
+            "title": "Horizon Fully Observed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assigned",
+          "mature",
+          "censored",
+          "invalid",
+          "valid",
+          "maturity_fraction",
+          "horizon_fully_observed"
+        ],
+        "title": "Population"
+      },
+      "RetentionCell": {
+        "properties": {
+          "week": {
+            "type": "integer",
+            "title": "Week"
+          },
+          "observable": {
+            "type": "boolean",
+            "title": "Observable"
+          },
+          "active_users": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active Users"
+          },
+          "retention_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retention Rate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "week",
+          "observable",
+          "active_users",
+          "retention_rate"
+        ],
+        "title": "RetentionCell"
+      },
+      "RetentionCohort": {
+        "properties": {
+          "segment": {
+            "type": "string",
+            "title": "Segment"
+          },
+          "cohort_start": {
+            "type": "string",
+            "format": "date",
+            "title": "Cohort Start"
+          },
+          "cohort_size": {
+            "type": "integer",
+            "title": "Cohort Size"
+          },
+          "complete_cohort": {
+            "type": "boolean",
+            "title": "Complete Cohort"
+          },
+          "periods": {
+            "items": {
+              "$ref": "#/components/schemas/RetentionCell"
+            },
+            "type": "array",
+            "title": "Periods"
+          }
+        },
+        "type": "object",
+        "required": [
+          "segment",
+          "cohort_start",
+          "cohort_size",
+          "complete_cohort",
+          "periods"
+        ],
+        "title": "RetentionCohort"
+      },
+      "RetentionResponse": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Dimension"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cohorts": {
+            "items": {
+              "$ref": "#/components/schemas/RetentionCohort"
+            },
+            "type": "array",
+            "title": "Cohorts"
+          },
+          "insights": {
+            "items": {
+              "$ref": "#/components/schemas/Insight"
+            },
+            "type": "array",
+            "title": "Insights"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "dimension",
+          "cohorts"
+        ],
+        "title": "RetentionResponse"
+      },
+      "SRMResult": {
+        "properties": {
+          "expected_allocation": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "propertyNames": {
+              "enum": [
+                "control",
+                "treatment"
+              ]
+            },
+            "type": "object",
+            "title": "Expected Allocation",
+            "default": {
+              "control": 0.5,
+              "treatment": 0.5
+            }
+          },
+          "observed_counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "propertyNames": {
+              "enum": [
+                "control",
+                "treatment"
+              ]
+            },
+            "type": "object",
+            "title": "Observed Counts"
+          },
+          "chi_square": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chi Square"
+          },
+          "p_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P Value"
+          },
+          "threshold": {
+            "type": "number",
+            "title": "Threshold",
+            "default": 0.01
+          },
+          "warning": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Warning"
+          }
+        },
+        "type": "object",
+        "required": [
+          "observed_counts",
+          "chi_square",
+          "p_value",
+          "warning"
+        ],
+        "title": "SRMResult"
+      },
+      "SegmentRow": {
+        "properties": {
+          "segment": {
+            "type": "string",
+            "title": "Segment"
+          },
+          "activation": {
+            "$ref": "#/components/schemas/ActivationRow"
+          },
+          "monetization": {
+            "$ref": "#/components/schemas/MonetizationValues"
+          }
+        },
+        "type": "object",
+        "required": [
+          "segment",
+          "activation",
+          "monetization"
+        ],
+        "title": "SegmentRow"
+      },
+      "SegmentsResponse": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "dimension": {
+            "$ref": "#/components/schemas/Dimension"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/SegmentRow"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "insights": {
+            "items": {
+              "$ref": "#/components/schemas/Insight"
+            },
+            "type": "array",
+            "title": "Insights"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "dimension",
+          "groups"
+        ],
+        "title": "SegmentsResponse"
+      },
+      "Sensitivity": {
+        "properties": {
+          "current_mde": {
+            "$ref": "#/components/schemas/MDEResult"
+          },
+          "planning_baseline_source": {
+            "type": "string",
+            "title": "Planning Baseline Source",
+            "default": "observed_mature_control_rate_for_sensitivity_only"
+          },
+          "required_sample_per_variant": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Required Sample Per Variant"
+          },
+          "sufficient_for_configured_threshold": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sufficient For Configured Threshold"
+          },
+          "observed_power_calculated": {
+            "type": "boolean",
+            "title": "Observed Power Calculated",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "current_mde",
+          "required_sample_per_variant",
+          "sufficient_for_configured_threshold"
+        ],
+        "title": "Sensitivity"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VariantResult": {
+        "properties": {
+          "variant": {
+            "type": "string",
+            "enum": [
+              "control",
+              "treatment"
+            ],
+            "title": "Variant"
+          },
+          "assigned": {
+            "type": "integer",
+            "title": "Assigned"
+          },
+          "mature": {
+            "type": "integer",
+            "title": "Mature"
+          },
+          "censored": {
+            "type": "integer",
+            "title": "Censored"
+          },
+          "invalid": {
+            "type": "integer",
+            "title": "Invalid"
+          },
+          "conversions": {
+            "type": "integer",
+            "title": "Conversions"
+          },
+          "conversion_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversion Rate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "variant",
+          "assigned",
+          "mature",
+          "censored",
+          "invalid",
+          "conversions",
+          "conversion_rate"
+        ],
+        "title": "VariantResult"
+      },
+      "app__experiments__contracts__Health": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "healthy",
+              "warning",
+              "insufficient_data"
+            ],
+            "title": "Status"
+          },
+          "srm": {
+            "$ref": "#/components/schemas/SRMResult"
+          },
+          "data_valid": {
+            "type": "boolean",
+            "title": "Data Valid"
+          },
+          "measurement_window_valid": {
+            "type": "boolean",
+            "title": "Measurement Window Valid"
+          },
+          "invalid_assignment_timing": {
+            "type": "integer",
+            "title": "Invalid Assignment Timing"
+          },
+          "missing_or_mismatched_signup": {
+            "type": "integer",
+            "title": "Missing Or Mismatched Signup"
+          },
+          "pre_assignment_outcomes": {
+            "type": "integer",
+            "title": "Pre Assignment Outcomes"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "srm",
+          "data_valid",
+          "measurement_window_valid",
+          "invalid_assignment_timing",
+          "missing_or_mismatched_signup",
+          "pre_assignment_outcomes",
+          "warnings"
+        ],
+        "title": "Health"
+      },
+      "app__schemas__demo__Health": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "database": {
+            "type": "string",
+            "title": "Database"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "database"
+        ],
+        "title": "Health"
+      }
+    }
+  }
+}

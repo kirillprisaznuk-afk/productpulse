@@ -1,0 +1,7 @@
+node_modules
+.next
+pnpm-lock.yaml
+types/api.d.ts
+types/openapi.json
+next-env.d.ts
+*.tsbuildinfo

@@ -8,12 +8,31 @@ from sqlalchemy.orm import Session
 
 from app.api.experiments import experiment_session
 from app.experiments.contracts import AnalysisQuery
-from app.experiments.service import analysis, experiment_list
+from app.experiments.service import analysis, experiment_list, workspace
 from app.main import app
 from app.models.warehouse import Event, Experiment, ExperimentAssignment
 from tests.analytics_fixture import at, worked_dataset
 
 pytestmark = pytest.mark.integration
+
+
+def test_batched_workspace_preserves_single_analysis(experiment_db):
+    from sqlalchemy import event
+
+    calls = []
+    connection = experiment_db.connection()
+
+    def record(*args):
+        calls.append(args[2])
+
+    event.listen(connection, "before_cursor_execute", record)
+    try:
+        result = workspace(experiment_db, AnalysisQuery())
+        assert len(calls) == 2
+    finally:
+        event.remove(connection, "before_cursor_execute", record)
+    assert result.analyses[0] == analysis(experiment_db, 1, AnalysisQuery())
+    assert result.listing == experiment_list(experiment_db, AnalysisQuery())
 
 
 @pytest.fixture
@@ -144,6 +163,9 @@ def test_list_and_api_real_transaction(experiment_db, monkeypatch):
         assert session.scalar(text("SHOW transaction_isolation")) == "repeatable read"
     with TestClient(app) as client:
         assert client.get("/api/experiments").status_code == 200
+        bulk = client.get("/api/experiments/workspace?as_of=2025-02-01")
+        assert bulk.status_code == 200
+        assert bulk.json()["analyses"][0]["population"]["mature"] == 7
         response = client.get("/api/experiments/1/analysis?as_of=2025-02-01")
         assert response.status_code == 200, response.text
         assert response.json()["population"]["mature"] == 7

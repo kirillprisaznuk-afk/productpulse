@@ -97,4 +97,13 @@ def funnel(session, query):
                 },
             )
         )
-    return FunnelResponse(period=Period.from_query(query), dimension=query.dimension, groups=groups)
+    from app.analytics.insights import funnel_group, funnel_segments
+
+    for group in groups:
+        group.insights = funnel_group(group)
+    return FunnelResponse(
+        period=Period.from_query(query),
+        dimension=query.dimension,
+        groups=groups,
+        insights=funnel_segments(groups),
+    )

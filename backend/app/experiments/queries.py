@@ -1,4 +1,4 @@
-"""SQL constructs intention-to-treat populations; Python receives two aggregate rows only."""
+"""SQL constructs intention-to-treat populations; Python receives aggregate rows per experiment and variant only."""
 
 from datetime import UTC, datetime
 
@@ -15,31 +15,32 @@ GROUP BY e.id ORDER BY e.id
 """
 
 POPULATION_SQL = """
-WITH population AS (
-    SELECT a.user_id, a.variant, a.assigned_at, u.signup_at,
+WITH outcomes AS (
+    SELECT user_id,
+           min(occurred_at) FILTER (WHERE event_name = 'signup_completed') AS signup_completed,
+           min(occurred_at) FILTER (WHERE event_name = 'core_action') AS first_action
+    FROM events
+    WHERE event_name IN ('signup_completed', 'core_action') AND occurred_at < :cutoff
+    GROUP BY user_id
+), population AS (
+    SELECT a.experiment_id, a.user_id, a.variant, a.assigned_at, u.signup_at,
            a.assigned_at >= e.started_at AND a.assigned_at < e.ended_at
                AND a.assigned_at >= :observed_start AS timing_valid,
-           s.signup_completed = u.signup_at AND a.assigned_at = u.signup_at AS signup_valid,
+           f.signup_completed = u.signup_at AND a.assigned_at = u.signup_at AS signup_valid,
            f.first_action,
            f.first_action <= a.assigned_at AS pre_assignment_outcome
     FROM experiment_assignments a JOIN experiments e ON e.id = a.experiment_id
     JOIN users u ON u.id = a.user_id
-    LEFT JOIN LATERAL (
-        SELECT min(occurred_at) AS signup_completed FROM events
-        WHERE user_id = a.user_id AND event_name = 'signup_completed' AND occurred_at < :cutoff
-    ) s ON TRUE
-    LEFT JOIN LATERAL (
-        SELECT min(occurred_at) AS first_action FROM events
-        WHERE user_id = a.user_id AND event_name = 'core_action' AND occurred_at < :cutoff
-    ) f ON TRUE
-    WHERE a.experiment_id = :experiment_id AND a.assigned_at < :cutoff
+    LEFT JOIN outcomes f ON f.user_id = a.user_id
+    WHERE (CAST(:experiment_id AS integer) IS NULL OR a.experiment_id = :experiment_id)
+      AND a.assigned_at < :cutoff
 ), checked AS (
     SELECT *, timing_valid AND COALESCE(signup_valid, false)
         AND NOT COALESCE(pre_assignment_outcome, false) AS valid,
         assigned_at + interval '7 days' <= :cutoff AS mature
     FROM population
 )
-SELECT variant, count(*) AS assigned,
+SELECT experiment_id, variant, count(*) AS assigned,
        count(*) FILTER (WHERE valid AND mature) AS mature,
        count(*) FILTER (WHERE valid AND NOT mature) AS censored,
        count(*) FILTER (WHERE NOT valid) AS invalid,
@@ -48,7 +49,7 @@ SELECT variant, count(*) AS assigned,
        count(*) FILTER (WHERE NOT timing_valid) AS invalid_assignment_timing,
        count(*) FILTER (WHERE NOT COALESCE(signup_valid, false)) AS missing_or_mismatched_signup,
        count(*) FILTER (WHERE pre_assignment_outcome) AS pre_assignment_outcomes
-FROM checked GROUP BY variant ORDER BY variant
+FROM checked GROUP BY experiment_id, variant ORDER BY experiment_id, variant
 """
 
 

@@ -1,0 +1,1608 @@
+{
+  "analysis1": {
+    "as_of": "2025-07-01",
+    "metadata": {
+      "id": 1,
+      "name": "Guided onboarding",
+      "description": "Synthetic user-randomized onboarding experiment for fictional TaskHarbor.",
+      "status": "completed",
+      "primary_metric": "activation_within_7_days",
+      "started_at": "2025-01-01T00:00:00Z",
+      "ended_at": "2025-04-01T12:00:00Z",
+      "variants": ["control", "treatment"],
+      "expected_allocation": {
+        "control": 0.5,
+        "treatment": 0.5
+      }
+    },
+    "population": {
+      "assigned": 7812,
+      "mature": 7812,
+      "censored": 0,
+      "invalid": 0,
+      "valid": 7812,
+      "maturity_fraction": 1.0,
+      "outcome_window_days": 7,
+      "horizon_fully_observed": true
+    },
+    "variant_results": [
+      {
+        "variant": "control",
+        "assigned": 3844,
+        "mature": 3844,
+        "censored": 0,
+        "invalid": 0,
+        "conversions": 2056,
+        "conversion_rate": 0.5348595213319459
+      },
+      {
+        "variant": "treatment",
+        "assigned": 3968,
+        "mature": 3968,
+        "censored": 0,
+        "invalid": 0,
+        "conversions": 2317,
+        "conversion_rate": 0.5839213709677419
+      }
+    ],
+    "effect": {
+      "absolute_uplift": 0.04906184963579596,
+      "relative_uplift": 0.09172847762645898,
+      "practical_threshold": null,
+      "exceeds_practical_threshold": null
+    },
+    "inference": {
+      "method": "two_sided_pooled_two_proportion_z_test",
+      "null_hypothesis": "treatment_rate = control_rate",
+      "alternative_hypothesis": "treatment_rate != control_rate",
+      "alpha": 0.05,
+      "test_statistic": 4.3671361235267065,
+      "p_value": 1.2588627681518582e-5,
+      "significant": true,
+      "confidence_interval": {
+        "confidence_level": 0.95,
+        "lower": 0.02704456182065502,
+        "point_estimate": 0.04906184963579596,
+        "upper": 0.07101584542414655,
+        "method": "newcombe_wilson_no_continuity_correction"
+      },
+      "approximation_valid": true,
+      "valid_for_decision": true,
+      "unavailable_reason": null
+    },
+    "health": {
+      "status": "healthy",
+      "srm": {
+        "expected_allocation": {
+          "control": 0.5,
+          "treatment": 0.5
+        },
+        "observed_counts": {
+          "control": 3844,
+          "treatment": 3968
+        },
+        "chi_square": 1.9682539682539681,
+        "p_value": 0.16063331540184936,
+        "threshold": 0.01,
+        "warning": false
+      },
+      "data_valid": true,
+      "measurement_window_valid": true,
+      "invalid_assignment_timing": 0,
+      "missing_or_mismatched_signup": 0,
+      "pre_assignment_outcomes": 0,
+      "warnings": []
+    },
+    "power": {
+      "current_mde": {
+        "baseline_rate": 0.5348595213319459,
+        "sample_size_per_variant": 3844,
+        "alpha": 0.05,
+        "target_power": 0.8,
+        "absolute_mde": 0.03178204171976083,
+        "relative_mde": 0.059421288118074234,
+        "unavailable_reason": null,
+        "method": "inverse_equal_allocation_normal_approximation"
+      },
+      "planning_baseline_source": "observed_mature_control_rate_for_sensitivity_only",
+      "required_sample_per_variant": null,
+      "sufficient_for_configured_threshold": null,
+      "observed_power_calculated": false
+    },
+    "decision": {
+      "state": "POSITIVE_SIGNIFICANT",
+      "interpretation": "Observed treatment minus control activation is 4.9062 percentage points. The two-sided test is significant at alpha 0.05. The effect interval excludes zero. No business-relevance threshold was configured.",
+      "next_action": "review_product_relevance",
+      "rollout_recommended": false
+    },
+    "methodological_limitations": [
+      "Fixed-horizon snapshot inference; repeated peeking does not preserve nominal error rates.",
+      "User-level independence is assumed; shared-account dependence is not adjusted.",
+      "One primary metric per experiment; no joint correction across experiments."
+    ]
+  },
+  "retention": {
+    "period": {
+      "start_date": "2025-06-02",
+      "end_date": "2025-07-01",
+      "as_of": "2025-07-01",
+      "fully_observed": true
+    },
+    "dimension": "acquisition_channel",
+    "cohorts": [
+      {
+        "segment": "organic",
+        "cohort_start": "2025-06-02",
+        "cohort_size": 148,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 60,
+            "retention_rate": 0.40540540540540543
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 59,
+            "retention_rate": 0.39864864864864863
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 44,
+            "retention_rate": 0.2972972972972973
+          },
+          {
+            "week": 3,
+            "observable": true,
+            "active_users": 39,
+            "retention_rate": 0.2635135135135135
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "organic",
+        "cohort_start": "2025-06-09",
+        "cohort_size": 188,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 81,
+            "retention_rate": 0.4308510638297872
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 74,
+            "retention_rate": 0.39361702127659576
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 53,
+            "retention_rate": 0.28191489361702127
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "organic",
+        "cohort_start": "2025-06-16",
+        "cohort_size": 201,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 108,
+            "retention_rate": 0.5373134328358209
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 82,
+            "retention_rate": 0.4079601990049751
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "organic",
+        "cohort_start": "2025-06-23",
+        "cohort_size": 174,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 81,
+            "retention_rate": 0.46551724137931033
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "organic",
+        "cohort_start": "2025-06-30",
+        "cohort_size": 5,
+        "complete_cohort": false,
+        "periods": [
+          {
+            "week": 0,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_search",
+        "cohort_start": "2025-06-02",
+        "cohort_size": 126,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 55,
+            "retention_rate": 0.4365079365079365
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 40,
+            "retention_rate": 0.31746031746031744
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 36,
+            "retention_rate": 0.2857142857142857
+          },
+          {
+            "week": 3,
+            "observable": true,
+            "active_users": 27,
+            "retention_rate": 0.21428571428571427
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_search",
+        "cohort_start": "2025-06-09",
+        "cohort_size": 152,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 53,
+            "retention_rate": 0.34868421052631576
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 52,
+            "retention_rate": 0.34210526315789475
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 37,
+            "retention_rate": 0.24342105263157895
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_search",
+        "cohort_start": "2025-06-16",
+        "cohort_size": 154,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 54,
+            "retention_rate": 0.35064935064935066
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 39,
+            "retention_rate": 0.2532467532467532
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_search",
+        "cohort_start": "2025-06-23",
+        "cohort_size": 131,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 66,
+            "retention_rate": 0.5038167938931297
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_search",
+        "cohort_start": "2025-06-30",
+        "cohort_size": 7,
+        "complete_cohort": false,
+        "periods": [
+          {
+            "week": 0,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_social",
+        "cohort_start": "2025-06-02",
+        "cohort_size": 155,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 59,
+            "retention_rate": 0.38064516129032255
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 41,
+            "retention_rate": 0.2645161290322581
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 34,
+            "retention_rate": 0.21935483870967742
+          },
+          {
+            "week": 3,
+            "observable": true,
+            "active_users": 29,
+            "retention_rate": 0.1870967741935484
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_social",
+        "cohort_start": "2025-06-09",
+        "cohort_size": 212,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 59,
+            "retention_rate": 0.2783018867924528
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 61,
+            "retention_rate": 0.28773584905660377
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 39,
+            "retention_rate": 0.18396226415094338
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_social",
+        "cohort_start": "2025-06-16",
+        "cohort_size": 211,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 59,
+            "retention_rate": 0.2796208530805687
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 46,
+            "retention_rate": 0.21800947867298578
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_social",
+        "cohort_start": "2025-06-23",
+        "cohort_size": 154,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 61,
+            "retention_rate": 0.3961038961038961
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "paid_social",
+        "cohort_start": "2025-06-30",
+        "cohort_size": 4,
+        "complete_cohort": false,
+        "periods": [
+          {
+            "week": 0,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "partner",
+        "cohort_start": "2025-06-02",
+        "cohort_size": 46,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 18,
+            "retention_rate": 0.391304347826087
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 15,
+            "retention_rate": 0.32608695652173914
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 12,
+            "retention_rate": 0.2608695652173913
+          },
+          {
+            "week": 3,
+            "observable": true,
+            "active_users": 15,
+            "retention_rate": 0.32608695652173914
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "partner",
+        "cohort_start": "2025-06-09",
+        "cohort_size": 72,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 33,
+            "retention_rate": 0.4583333333333333
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 34,
+            "retention_rate": 0.4722222222222222
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 31,
+            "retention_rate": 0.4305555555555556
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "partner",
+        "cohort_start": "2025-06-16",
+        "cohort_size": 68,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 36,
+            "retention_rate": 0.5294117647058824
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 29,
+            "retention_rate": 0.4264705882352941
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "partner",
+        "cohort_start": "2025-06-23",
+        "cohort_size": 52,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 24,
+            "retention_rate": 0.46153846153846156
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "partner",
+        "cohort_start": "2025-06-30",
+        "cohort_size": 1,
+        "complete_cohort": false,
+        "periods": [
+          {
+            "week": 0,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "referral",
+        "cohort_start": "2025-06-02",
+        "cohort_size": 76,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 43,
+            "retention_rate": 0.5657894736842105
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 35,
+            "retention_rate": 0.4605263157894737
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 29,
+            "retention_rate": 0.3815789473684211
+          },
+          {
+            "week": 3,
+            "observable": true,
+            "active_users": 33,
+            "retention_rate": 0.4342105263157895
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "referral",
+        "cohort_start": "2025-06-09",
+        "cohort_size": 69,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 37,
+            "retention_rate": 0.5362318840579711
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 22,
+            "retention_rate": 0.3188405797101449
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 28,
+            "retention_rate": 0.4057971014492754
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "referral",
+        "cohort_start": "2025-06-16",
+        "cohort_size": 96,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 37,
+            "retention_rate": 0.3854166666666667
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 41,
+            "retention_rate": 0.4270833333333333
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "referral",
+        "cohort_start": "2025-06-23",
+        "cohort_size": 73,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 42,
+            "retention_rate": 0.5753424657534246
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "referral",
+        "cohort_start": "2025-06-30",
+        "cohort_size": 4,
+        "complete_cohort": false,
+        "periods": [
+          {
+            "week": 0,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      }
+    ]
+  },
+  "experiments": {
+    "as_of": "2025-07-01",
+    "experiments": [
+      {
+        "id": 1,
+        "name": "Guided onboarding",
+        "description": "Synthetic user-randomized onboarding experiment for fictional TaskHarbor.",
+        "status": "completed",
+        "primary_metric": "activation_within_7_days",
+        "started_at": "2025-01-01T00:00:00Z",
+        "ended_at": "2025-04-01T12:00:00Z",
+        "variants": ["control", "treatment"],
+        "expected_allocation": {
+          "control": 0.5,
+          "treatment": 0.5
+        },
+        "assignment_counts": {
+          "control": 3844,
+          "treatment": 3968
+        }
+      },
+      {
+        "id": 2,
+        "name": "Workspace checklist copy",
+        "description": "Synthetic user-randomized onboarding experiment for fictional TaskHarbor.",
+        "status": "completed",
+        "primary_metric": "activation_within_7_days",
+        "started_at": "2025-04-01T12:00:00Z",
+        "ended_at": "2025-07-01T00:00:00Z",
+        "variants": ["control", "treatment"],
+        "expected_allocation": {
+          "control": 0.5,
+          "treatment": 0.5
+        },
+        "assignment_counts": {
+          "control": 4098,
+          "treatment": 4090
+        }
+      }
+    ]
+  },
+  "total": {
+    "period": {
+      "start_date": "2025-06-02",
+      "end_date": "2025-07-01",
+      "as_of": "2025-07-01",
+      "fully_observed": true
+    },
+    "dimension": null,
+    "cohorts": [
+      {
+        "segment": "all",
+        "cohort_start": "2025-06-02",
+        "cohort_size": 551,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 235,
+            "retention_rate": 0.426497277676951
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 190,
+            "retention_rate": 0.3448275862068966
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 155,
+            "retention_rate": 0.2813067150635209
+          },
+          {
+            "week": 3,
+            "observable": true,
+            "active_users": 143,
+            "retention_rate": 0.2595281306715064
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "all",
+        "cohort_start": "2025-06-09",
+        "cohort_size": 693,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 263,
+            "retention_rate": 0.3795093795093795
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 243,
+            "retention_rate": 0.35064935064935066
+          },
+          {
+            "week": 2,
+            "observable": true,
+            "active_users": 188,
+            "retention_rate": 0.2712842712842713
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "all",
+        "cohort_start": "2025-06-16",
+        "cohort_size": 730,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 294,
+            "retention_rate": 0.40273972602739727
+          },
+          {
+            "week": 1,
+            "observable": true,
+            "active_users": 237,
+            "retention_rate": 0.32465753424657534
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "all",
+        "cohort_start": "2025-06-23",
+        "cohort_size": 584,
+        "complete_cohort": true,
+        "periods": [
+          {
+            "week": 0,
+            "observable": true,
+            "active_users": 274,
+            "retention_rate": 0.4691780821917808
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      },
+      {
+        "segment": "all",
+        "cohort_start": "2025-06-30",
+        "cohort_size": 21,
+        "complete_cohort": false,
+        "periods": [
+          {
+            "week": 0,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 1,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 2,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 3,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          },
+          {
+            "week": 4,
+            "observable": false,
+            "active_users": null,
+            "retention_rate": null
+          }
+        ]
+      }
+    ]
+  },
+  "segments": {
+    "period": {
+      "start_date": "2025-06-01",
+      "end_date": "2025-07-01",
+      "as_of": "2025-07-01",
+      "fully_observed": true
+    },
+    "dimension": "acquisition_channel",
+    "groups": [
+      {
+        "segment": "organic",
+        "activation": {
+          "segment": "organic",
+          "cohort_start": null,
+          "completed_signups": 739,
+          "eligible_users": 587,
+          "censored_users": 152,
+          "activated_users": 349,
+          "activation_rate": 0.5945485519591142,
+          "median_activation_seconds": 108740.529734
+        },
+        "monetization": {
+          "eligible_accounts": 0,
+          "converted_accounts": 0,
+          "censored_accounts": 197,
+          "paid_conversion_rate": null,
+          "paid_users": 766,
+          "active_subscriptions": 188,
+          "mrr": 28262.0,
+          "arpu": 22.88421052631579,
+          "new_mrr": 6813.0,
+          "churned_mrr": 1251.0,
+          "opening_subscriptions": 150,
+          "churned_subscriptions": 9,
+          "churned_opening_subscriptions": 9,
+          "churn_rate": 0.06
+        }
+      },
+      {
+        "segment": "paid_search",
+        "activation": {
+          "segment": "paid_search",
+          "cohort_start": null,
+          "completed_signups": 593,
+          "eligible_users": 477,
+          "censored_users": 116,
+          "activated_users": 244,
+          "activation_rate": 0.5115303983228512,
+          "median_activation_seconds": 112546.68312500001
+        },
+        "monetization": {
+          "eligible_accounts": 0,
+          "converted_accounts": 0,
+          "censored_accounts": 155,
+          "paid_conversion_rate": null,
+          "paid_users": 719,
+          "active_subscriptions": 171,
+          "mrr": 27229.0,
+          "arpu": 26.853057199211044,
+          "new_mrr": 4368.0,
+          "churned_mrr": 1172.0,
+          "opening_subscriptions": 147,
+          "churned_subscriptions": 8,
+          "churned_opening_subscriptions": 8,
+          "churn_rate": 0.05442176870748299
+        }
+      },
+      {
+        "segment": "paid_social",
+        "activation": {
+          "segment": "paid_social",
+          "cohort_start": null,
+          "completed_signups": 765,
+          "eligible_users": 624,
+          "censored_users": 141,
+          "activated_users": 257,
+          "activation_rate": 0.41185897435897434,
+          "median_activation_seconds": 104178.331014
+        },
+        "monetization": {
+          "eligible_accounts": 0,
+          "converted_accounts": 0,
+          "censored_accounts": 229,
+          "paid_conversion_rate": null,
+          "paid_users": 945,
+          "active_subscriptions": 211,
+          "mrr": 36189.0,
+          "arpu": 25.979181622397704,
+          "new_mrr": 8135.0,
+          "churned_mrr": 1361.0,
+          "opening_subscriptions": 175,
+          "churned_subscriptions": 9,
+          "churned_opening_subscriptions": 9,
+          "churn_rate": 0.05142857142857143
+        }
+      },
+      {
+        "segment": "partner",
+        "activation": {
+          "segment": "partner",
+          "cohort_start": null,
+          "completed_signups": 244,
+          "eligible_users": 200,
+          "censored_users": 44,
+          "activated_users": 121,
+          "activation_rate": 0.605,
+          "median_activation_seconds": 112178.617705
+        },
+        "monetization": {
+          "eligible_accounts": 0,
+          "converted_accounts": 0,
+          "censored_accounts": 74,
+          "paid_conversion_rate": null,
+          "paid_users": 179,
+          "active_subscriptions": 47,
+          "mrr": 5933.0,
+          "arpu": 15.779255319148936,
+          "new_mrr": 892.0,
+          "churned_mrr": 558.0,
+          "opening_subscriptions": 41,
+          "churned_subscriptions": 2,
+          "churned_opening_subscriptions": 2,
+          "churn_rate": 0.04878048780487805
+        }
+      },
+      {
+        "segment": "referral",
+        "activation": {
+          "segment": "referral",
+          "cohort_start": null,
+          "completed_signups": 327,
+          "eligible_users": 258,
+          "censored_users": 69,
+          "activated_users": 157,
+          "activation_rate": 0.6085271317829457,
+          "median_activation_seconds": 110886.20497
+        },
+        "monetization": {
+          "eligible_accounts": 0,
+          "converted_accounts": 0,
+          "censored_accounts": 94,
+          "paid_conversion_rate": null,
+          "paid_users": 352,
+          "active_subscriptions": 90,
+          "mrr": 12680.0,
+          "arpu": 22.642857142857142,
+          "new_mrr": 2734.0,
+          "churned_mrr": 1191.0,
+          "opening_subscriptions": 83,
+          "churned_subscriptions": 9,
+          "churned_opening_subscriptions": 9,
+          "churn_rate": 0.10843373493975904
+        }
+      }
+    ]
+  },
+  "analysis2": {
+    "as_of": "2025-07-01",
+    "metadata": {
+      "id": 2,
+      "name": "Workspace checklist copy",
+      "description": "Synthetic user-randomized onboarding experiment for fictional TaskHarbor.",
+      "status": "completed",
+      "primary_metric": "activation_within_7_days",
+      "started_at": "2025-04-01T12:00:00Z",
+      "ended_at": "2025-07-01T00:00:00Z",
+      "variants": ["control", "treatment"],
+      "expected_allocation": {
+        "control": 0.5,
+        "treatment": 0.5
+      }
+    },
+    "population": {
+      "assigned": 8188,
+      "mature": 7666,
+      "censored": 522,
+      "invalid": 0,
+      "valid": 8188,
+      "maturity_fraction": 0.936248168050806,
+      "outcome_window_days": 7,
+      "horizon_fully_observed": false
+    },
+    "variant_results": [
+      {
+        "variant": "control",
+        "assigned": 4098,
+        "mature": 3838,
+        "censored": 260,
+        "invalid": 0,
+        "conversions": 1972,
+        "conversion_rate": 0.5138092756644086
+      },
+      {
+        "variant": "treatment",
+        "assigned": 4090,
+        "mature": 3828,
+        "censored": 262,
+        "invalid": 0,
+        "conversions": 2057,
+        "conversion_rate": 0.5373563218390804
+      }
+    ],
+    "effect": {
+      "absolute_uplift": 0.02354704617467185,
+      "relative_uplift": 0.04582837891399115,
+      "practical_threshold": null,
+      "exceeds_practical_threshold": null
+    },
+    "inference": {
+      "method": "two_sided_pooled_two_proportion_z_test",
+      "null_hypothesis": "treatment_rate = control_rate",
+      "alternative_hypothesis": "treatment_rate != control_rate",
+      "alpha": 0.05,
+      "test_statistic": 2.064376984019897,
+      "p_value": 0.03898198697010446,
+      "significant": true,
+      "confidence_interval": {
+        "confidence_level": 0.95,
+        "lower": 0.0011916873083651844,
+        "point_estimate": 0.02354704617467185,
+        "upper": 0.04586901029065927,
+        "method": "newcombe_wilson_no_continuity_correction"
+      },
+      "approximation_valid": true,
+      "valid_for_decision": false,
+      "unavailable_reason": null
+    },
+    "health": {
+      "status": "warning",
+      "srm": {
+        "expected_allocation": {
+          "control": 0.5,
+          "treatment": 0.5
+        },
+        "observed_counts": {
+          "control": 4098,
+          "treatment": 4090
+        },
+        "chi_square": 0.007816316560820713,
+        "p_value": 0.9295508654364542,
+        "threshold": 0.01,
+        "warning": false
+      },
+      "data_valid": true,
+      "measurement_window_valid": true,
+      "invalid_assignment_timing": 0,
+      "missing_or_mismatched_signup": 0,
+      "pre_assignment_outcomes": 0,
+      "warnings": [
+        "Immature users are excluded regardless of observed success.",
+        "Snapshot precedes the end of enrollment plus seven-day follow-up."
+      ]
+    },
+    "power": {
+      "current_mde": {
+        "baseline_rate": 0.5138092756644086,
+        "sample_size_per_variant": 3828,
+        "alpha": 0.05,
+        "target_power": 0.8,
+        "absolute_mde": 0.03195684680789643,
+        "relative_mde": 0.06219593207338057,
+        "unavailable_reason": null,
+        "method": "inverse_equal_allocation_normal_approximation"
+      },
+      "planning_baseline_source": "observed_mature_control_rate_for_sensitivity_only",
+      "required_sample_per_variant": null,
+      "sufficient_for_configured_threshold": null,
+      "observed_power_calculated": false
+    },
+    "decision": {
+      "state": "POSITIVE_SIGNIFICANT",
+      "interpretation": "Observed treatment minus control activation is 2.3547 percentage points. The two-sided test is significant at alpha 0.05. The effect interval excludes zero. No business-relevance threshold was configured. Enrollment plus seven-day follow-up is not fully observed.",
+      "next_action": "collect_mature_data",
+      "rollout_recommended": false
+    },
+    "methodological_limitations": [
+      "Fixed-horizon snapshot inference; repeated peeking does not preserve nominal error rates.",
+      "User-level independence is assumed; shared-account dependence is not adjusted.",
+      "One primary metric per experiment; no joint correction across experiments."
+    ]
+  }
+}

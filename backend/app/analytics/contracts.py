@@ -107,6 +107,20 @@ class Comparison(BaseModel):
     direction: Literal["up", "down", "flat", "unavailable"]
 
 
+class Insight(BaseModel):
+    rule: str
+    severity: Literal["critical", "warning", "opportunity", "information"]
+    priority: int
+    category: Literal["change", "funnel", "retention", "segment"]
+    metric: str
+    message: str
+    evidence: dict[str, float | int | str | None]
+    destination: Literal["/", "/funnels", "/retention", "/segments"]
+    segment: str | None = None
+    cohort_start: date | None = None
+    caveat: str = "Descriptive comparison; not a significance test or causal conclusion."
+
+
 class ActivityPoint(BaseModel):
     date: date
     dau: int | None
@@ -159,12 +173,14 @@ class FunnelGroup(BaseModel):
     median_signup_to_onboarding_seconds: float | None
     median_signup_to_core_action_seconds: float | None
     median_core_action_to_paid_seconds: float | None
+    insights: list[Insight] = Field(default_factory=list)
 
 
 class FunnelResponse(BaseModel):
     period: Period
     dimension: Dimension | None
     groups: list[FunnelGroup]
+    insights: list[Insight] = Field(default_factory=list)
 
 
 class RetentionCell(BaseModel):
@@ -186,6 +202,7 @@ class RetentionResponse(BaseModel):
     period: Period
     dimension: Dimension | None
     cohorts: list[RetentionCohort]
+    insights: list[Insight] = Field(default_factory=list)
 
 
 class MonetizationValues(BaseModel):
@@ -224,6 +241,7 @@ class SegmentsResponse(BaseModel):
     period: Period
     dimension: Dimension
     groups: list[SegmentRow]
+    insights: list[Insight] = Field(default_factory=list)
 
 
 class OverviewResponse(BaseModel):
@@ -232,3 +250,4 @@ class OverviewResponse(BaseModel):
     dimension: Dimension | None
     segment_value: str | None
     metrics: dict[str, Comparison]
+    insights: list[Insight] = Field(default_factory=list)
