@@ -27,3 +27,8 @@ node_modules/
 *.tsbuildinfo
 playwright-report/
 test-results/
+
+venv/
+coverage/
+*.dump
+*.sql.gz

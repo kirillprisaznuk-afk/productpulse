@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -39,5 +39,9 @@
     "prettier": "3.9.9",
     "typescript": "5.9.3",
     "vitest": "5.0.3"
+  },
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=24 <25"
   }
 }

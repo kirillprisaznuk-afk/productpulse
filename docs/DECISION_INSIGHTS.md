@@ -1,7 +1,7 @@
 # Decision intelligence and Stage 6 acceptance
 
 Validated locally on 6 October 2026, using the unchanged January–June 2025 synthetic warehouse.
-Stage 7 and public publication have not begun.
+This is the historical Stage 6 acceptance record. Current release status is in [RELEASE.md](RELEASE.md).
 
 ## Architecture and authority
 

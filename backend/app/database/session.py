@@ -11,7 +11,7 @@ def database_url() -> str:
     load_dotenv(Path(__file__).resolve().parents[3] / ".env")
     return os.environ.get(
         "DATABASE_URL",
-        "postgresql+psycopg://productpulse:productpulse_local@localhost:5432/productpulse",
+        "postgresql+psycopg://productpulse:replace_me@localhost:5432/productpulse",
     )
 
 

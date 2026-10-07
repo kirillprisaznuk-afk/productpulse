@@ -1,4 +1,4 @@
-"""SQL constructs intention-to-treat populations; Python receives aggregate rows per experiment and variant only."""
+"""SQL constructs ITT populations; Python receives per-experiment variant aggregates."""
 
 from datetime import UTC, datetime
 
